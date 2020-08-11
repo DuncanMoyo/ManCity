@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { easePolyOut } from "d3-ease";
 import Animate from "react-move/Animate";
-import featuredPlayer from '../../../Assets/images/featured_player.png'
+import featuredPlayer from "../../../Assets/images/featured_player.png";
 
 class Text extends Component {
+
   animateNumber = () => (
     <Animate
       show={true}
@@ -93,7 +94,7 @@ class Text extends Component {
         timing: { delay: 3000, duration: 500, ease: easePolyOut },
       }}
     >
-      {opacity => {
+      {(opacity) => {
         return (
           <div
             className="featured_player"
@@ -102,9 +103,7 @@ class Text extends Component {
               background: `url(${featuredPlayer})`,
               transform: `translate(550px, 201px)`,
             }}
-          >
-            
-          </div>
+          ></div>
         );
       }}
     </Animate>

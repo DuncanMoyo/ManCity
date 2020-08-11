@@ -10,7 +10,7 @@ class Stripes extends Component {
         left: 120,
         rotate: 25,
         top: -260,
-        delay: 0,
+        delay: 100,
       },
       {
         background: "#ffffff",
@@ -29,7 +29,7 @@ class Stripes extends Component {
     ],
   };
 
-  showStripes = () =>
+  showStripes = () => (
     this.state.stripes.map((stripe, i) => (
       <Animate
         key={i}
@@ -68,7 +68,9 @@ class Stripes extends Component {
           );
         }}
       </Animate>
-    ));
+    ))
+  )
+   
 
   render() {
     return <div className="featured_stripes">{this.showStripes()}</div>;
