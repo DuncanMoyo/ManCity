@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Tag = (props) => {
-  const {bck, size, color, children, link, linkTo} = props
+  const {bck, size, add, color, children, link, linkTo} = props
   const template = (
     <div
       style={{
@@ -12,6 +12,7 @@ const Tag = (props) => {
         padding: "5px 10px",
         display: "inline-block",
         fontFamily: "Righteous",
+        ...add
       }}
     >
       {children}
