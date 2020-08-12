@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Routes from './routes';
 import './Assets/css/app.css'
 import {BrowserRouter} from 'react-router-dom'
-import './firebase'
 
 
 const App = () => {
