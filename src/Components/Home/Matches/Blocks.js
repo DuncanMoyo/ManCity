@@ -5,7 +5,7 @@ import MatchesBlock from '../../UI/Matches_block';
 import Slide from 'react-reveal/Slide'
 
 
-export class Blocks extends Component {
+class Blocks extends Component {
 
   state = {
     matches: []
@@ -37,7 +37,7 @@ export class Blocks extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className='homes_matches'>
+      <div className='home_matches'>
         {this.showMatches(this.state.matches)}
       </div>
     )

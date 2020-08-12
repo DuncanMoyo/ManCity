@@ -2,48 +2,47 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Tag = (props) => {
+  const {bck, size, color, children, link, linkTo} = props
   const template = (
     <div
       style={{
-        background: props.bck,
-        fontSize: props.size,
-        color: props.color,
+        background: bck,
+        fontSize: size,
+        color: color,
         padding: "5px 10px",
-        display: 'inline-block',
+        display: "inline-block",
         fontFamily: "Righteous",
-        ...props.add
-      
       }}
     >
-      {props.children}
+      {children}
     </div>
   );
 
-  if (props.link) {
-    return <Link to={props.linkTo}></Link>;
+  if (link) {
+  return <Link to={linkTo}>{template}</Link>;
   } else {
     return template;
   }
 };
 
-export const firebaseLooper = snapshot => {
+export const firebaseLooper = (snapshot) => {
   const data = [];
-  snapshot.forEach(childSnapshot => {
+  snapshot.forEach((childSnapshot) => {
     data.push({
       ...childSnapshot.val(),
-      id: childSnapshot.key
-    })
-  })
-  return data
-}
+      id: childSnapshot.key,
+    });
+  });
+  return data;
+};
 
-export const reverseArray = actualArray => {
+export const reverseArray = (actualArray) => {
   let reversedArray = [];
 
   for (let i = actualArray.length - 1; i >= 0; i--) {
-    reversedArray.push(actualArray[i])
+    reversedArray.push(actualArray[i]);
   }
-  return reversedArray
-}
+  return reversedArray;
+};
 
 export default Tag;
