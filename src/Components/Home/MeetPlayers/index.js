@@ -1,18 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Stripes from "../../../Assets/images/stripes.png";
 import Tag from "../../UI/Misc";
 import Reveal from "react-reveal/Reveal";
 import Cards from "./Cards";
 
-class MeetPlayers extends Component {
-  state = { show: false };
 
-  render() {
+  const MeetPlayers = () => {
+
+    const [show, setShow] = useState(false)
+
+    const displayWords = ['Meet', 'The', 'Players']
+
     return (
       <Reveal
-        fraction={0.7}
+        fraction={0.9}
         onReveal={() => {
-          this.setState({ show: true });
+          setShow(true)
         }}
       >
         <div
@@ -22,48 +25,26 @@ class MeetPlayers extends Component {
           <div className="container">
             <div className="home_meetplayers_wrapper">
               <div className="home_card_wrapper">
-                <Cards show={this.state.show} />
+                <Cards show={show} />
               </div>
               <div className="home_text_wrapper">
-                <div>
-                  <Tag
-                    bck="#0e1731"
-                    size="100px"
-                    color="#ffffff"
-                    add={{
-                      display: "inline-block",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    Meet
-                  </Tag>
-                </div>
-                <div>
-                  <Tag
-                    bck="#0e1731"
-                    size="100px"
-                    color="#ffffff"
-                    add={{
-                      display: "inline-block",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    The
-                  </Tag>
-                </div>
-                <div>
-                  <Tag
-                    bck="#0e1731"
-                    size="100px"
-                    color="#ffffff"
-                    add={{
-                      display: "inline-block",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    Players
-                  </Tag>
-                </div>
+                {displayWords.map((word, i) => {
+                  return (
+                    <div key={i} >
+                    <Tag
+                      bck="#0e1731"
+                      size="100px"
+                      color="#ffffff"
+                      add={{
+                        display: "inline-block",
+                        marginBottom: "20px",
+                      }}
+                    >
+                      {word}
+                    </Tag>
+                  </div>
+                  )
+                })}
                 <div>
                   <Tag
                     bck="#ffffff"
@@ -87,5 +68,5 @@ class MeetPlayers extends Component {
       </Reveal>
     );
   }
-}
+
 export default MeetPlayers;
