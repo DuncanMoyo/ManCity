@@ -1,67 +1,89 @@
-import React, { Component } from 'react'
-import Fade from 'react-reveal/Fade'
-import FormFields from '../../UI/FormFields'
-import {validate} from '../../UI/Misc'
+import React, { Component } from "react";
+import Fade from "react-reveal/Fade";
+import FormFields from "../../UI/FormFields";
+import { validate } from "../../UI/Misc";
 
 class Enrol extends Component {
-
   state = {
     formError: false,
-    formSuccess: '',
+    formSuccess: "",
     formData: {
       email: {
-        element: 'input',
-        value: '',
+        element: "input",
+        value: "",
         config: {
-          name: 'email_input',
-          type: 'email',
-          placeholder: 'Enter your email'
+          name: "email_input",
+          type: "email",
+          placeholder: "Enter your email",
         },
         validation: {
           required: true,
-          email: true
+          email: true,
         },
         valid: false,
-        validationMessage: ''
-      }
+        validationMessage: "",
+      },
+    },
+  };
+
+  submitForm(event) {
+    event.preventDefault();
+
+    let dataToSubmit = {};
+    let formIsValid = true;
+
+    for (let key in this.state.formData) {
+      dataToSubmit[key] = this.state.formData[key].value;
+      formIsValid = this.state.formData[key].valid && formIsValid;
     }
-  }
 
-  submitForm() {
-
+    if (formIsValid) {
+      console.log("dataToSubmit");
+    } else {
+      // console.log('ERROR');
+      this.setState({
+        formError: true,
+      });
+    }
   }
 
   updateForm(element) {
     // console.log(element);
-    const newFormData = {...this.state.formData}
-    const newElement = {...newFormData[element.id]}
-    newElement.value = element.event.target.value
+    const newFormData = { ...this.state.formData };
+    const newElement = { ...newFormData[element.id] };
+    newElement.value = element.event.target.value;
 
-    let validData = validate(newElement)
+    let validData = validate(newElement);
     // console.log(validData);
-    newElement.valid = validData[0]
-    newElement.validationMessage = validData[1]
-    newFormData[element.id] = newElement
-    console.log(newFormData);
-    this.setState({formData: newFormData})
+    newElement.valid = validData[0];
+    newElement.validationMessage = validData[1];
+    newFormData[element.id] = newElement;
+    // console.log(newFormData);
+    this.setState({ formData: newFormData, formError: false });
   }
 
   render() {
     return (
       <Fade>
-        <div className='enroll_wrapper'>
-          <form onSubmit={event => this.submitForm(event)}>
-            <div className='enroll_title'>
-              Enter your email
-            </div>
-            <div className='enroll_input'>
-              <FormFields id={'email'} formData={this.state.formData.email} change={element => this.updateForm(element)}/>
+        <div className="enroll_wrapper">
+          <form onSubmit={(event) => this.submitForm(event)}>
+            <div className="enroll_title">Enter your email</div>
+            <div className="enroll_input">
+              <FormFields
+                id={"email"}
+                formData={this.state.formData.email}
+                change={(element) => this.updateForm(element)}
+              />
+              {this.state.formError ? (
+                <div className="error_label">Something is wrong. Try again</div>
+              ) : null}
+              <button onClick={(event) => this.submitForm(event)}>Enrol</button>
             </div>
           </form>
         </div>
       </Fade>
-    )
+    );
   }
 }
 
-export default Enrol
+export default Enrol;
