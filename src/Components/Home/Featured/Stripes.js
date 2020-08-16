@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { easePolyOut } from "d3-ease";
 import Animate from "react-move/Animate";
 
-const Stripes = () => {
-  const stripeData = {
+class Stripes extends Component {
+  state = {
     stripes: [
       {
         background: "#98c5e9",
@@ -29,27 +29,25 @@ const Stripes = () => {
     ],
   };
 
-  const { stripes } = stripeData;
-
-  const showStripes = () =>
-    stripes.map(({ background, top, left, delay, rotate }) => (
+  showStripes = () => (
+    this.state.stripes.map((stripe, i) => (
       <Animate
-        key={left}
+        key={i}
         show={true}
         start={{
-          background: background,
+          background: stripe.background,
           opacity: 0,
           left: 0,
           rotate: 0,
           top: 0,
         }}
         enter={{
-          background: [background],
+          background: [stripe.background],
           opacity: [1],
-          rotate: [rotate],
-          top: [top],
-          left: [left],
-          timing: { delay: delay, duration: 200, ease: easePolyOut },
+          rotate: [stripe.rotate],
+          top: [stripe.top],
+          left: [stripe.left],
+          timing: { delay: stripe.delay, duration: 200, ease: easePolyOut },
           events: {
             end() {
               console.log("Animation finished");
@@ -70,9 +68,13 @@ const Stripes = () => {
           );
         }}
       </Animate>
-    ));
+    ))
+  )
+   
 
-  return <div className="featured_stripes">{showStripes()}</div>;
-};
+  render() {
+    return <div className="featured_stripes">{this.showStripes()}</div>;
+  }
+}
 
 export default Stripes;

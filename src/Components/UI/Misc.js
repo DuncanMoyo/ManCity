@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Tag = ({bck, size, add, color, children, link, linkTo}) => {
-  // const {bck, size, add, color, children, link, linkTo} = props
+const Tag = (props) => {
+  const {bck, size, add, color, children, link, linkTo} = props
   const template = (
     <div
       style={{

@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Stripes from "../../../Assets/images/stripes.png";
 import Tag from "../../UI/Misc";
 import Reveal from "react-reveal/Reveal";
 import Cards from "./Cards";
 
+class MeetPlayers extends Component {
+  state = { show: false };
 
-  const MeetPlayers = () => {
-
-    const [show, setShow] = useState(false)
-
-    const displayWords = ['Meet', 'The', 'Players']
-
+  render() {
     return (
       <Reveal
-        fraction={0.9}
+        fraction={0.7}
         onReveal={() => {
-          setShow(true)
+          this.setState({ show: true });
         }}
       >
         <div
@@ -25,26 +22,48 @@ import Cards from "./Cards";
           <div className="container">
             <div className="home_meetplayers_wrapper">
               <div className="home_card_wrapper">
-                <Cards show={show} />
+                <Cards show={this.state.show} />
               </div>
               <div className="home_text_wrapper">
-                {displayWords.map((word, i) => {
-                  return (
-                    <div key={i} >
-                    <Tag
-                      bck="#0e1731"
-                      size="100px"
-                      color="#ffffff"
-                      add={{
-                        display: "inline-block",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      {word}
-                    </Tag>
-                  </div>
-                  )
-                })}
+                <div>
+                  <Tag
+                    bck="#0e1731"
+                    size="100px"
+                    color="#ffffff"
+                    add={{
+                      display: "inline-block",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    Meet
+                  </Tag>
+                </div>
+                <div>
+                  <Tag
+                    bck="#0e1731"
+                    size="100px"
+                    color="#ffffff"
+                    add={{
+                      display: "inline-block",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    The
+                  </Tag>
+                </div>
+                <div>
+                  <Tag
+                    bck="#0e1731"
+                    size="100px"
+                    color="#ffffff"
+                    add={{
+                      display: "inline-block",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    Players
+                  </Tag>
+                </div>
                 <div>
                   <Tag
                     bck="#ffffff"
@@ -68,5 +87,5 @@ import Cards from "./Cards";
       </Reveal>
     );
   }
-
+}
 export default MeetPlayers;

@@ -2,21 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import mCityLogo from "../../Assets/images/logos/manchester_city_logo.png";
 
-const CityLogo = ({width, height, link, linkTo}) => {
+const CityLogo = (props) => {
   const template = (
     <div
       className="img_cover"
       style={{
-        width: width,
-        height: height,
+        width: props.width,
+        height: props.height,
         background: `url(${mCityLogo}) no-repeat`,
       }}
     ></div>
   );
 
-  if (link) {
+  if (props.link) {
     return (
-      <Link to={linkTo} className="link_logo">
+      <Link to={props.linkTo} className="link_logo">
         {template}
       </Link>
     );
