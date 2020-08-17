@@ -26,6 +26,31 @@ class Enrol extends Component {
     },
   };
 
+  resetFormSuccess () {
+    const newFormData = {...this.state.formData}
+
+    for (let key in newFormData) {
+      newFormData[key].value = '';
+      newFormData[key].valid = false;
+      newFormData[key].validationMessage = '';
+    }
+
+    this.setState({
+      formError: false,
+      formData: newFormData,
+      formSuccess: 'Congratulations'
+    })
+    this.successMessage()
+  }
+
+  successMessage() {
+    setTimeout(() => {
+      this.setState({
+        formSuccess: ''
+      })
+    }, 2000)
+  }
+
   submitForm(event) {
     event.preventDefault();
 
@@ -39,6 +64,7 @@ class Enrol extends Component {
 
     if (formIsValid) {
       console.log("dataToSubmit");
+      this.resetFormSuccess()
     } else {
       // console.log('ERROR');
       this.setState({
@@ -77,6 +103,7 @@ class Enrol extends Component {
               {this.state.formError ? (
                 <div className="error_label">Something is wrong. Try again</div>
               ) : null}
+              <div className='success_label'>{this.state.formSuccess}</div>
               <button onClick={(event) => this.submitForm(event)}>Enrol</button>
             </div>
           </form>
