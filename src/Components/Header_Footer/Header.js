@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import CityLogo from "../UI/Icons";
 
-class Header extends Component {
-  render() {
+
+  const Header = () => {
     return (
       <AppBar
         position="fixed"
@@ -34,6 +34,5 @@ class Header extends Component {
       </AppBar>
     );
   }
-}
 
 export default Header;
