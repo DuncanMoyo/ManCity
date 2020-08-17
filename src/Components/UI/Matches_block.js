@@ -1,16 +1,40 @@
 import React from "react";
 
+<<<<<<< HEAD
 const matchesBlock = (props) => {
   const {
     awayThmb,
     final,
     localThmb,
     local,
+=======
+const matchesBlock = ({
+  match: {
+    awayThmb,
+    final,
+    localThmb,
+>>>>>>> dce9b1f6197a840eb0a3614c67e6dc36b96da695
     date,
     resultLocal,
     resultAway,
     away,
+<<<<<<< HEAD
   } = props.match;
+=======
+    local,
+  },
+}) => {
+  // const {
+  //   awayThmb,
+  //   final,
+  //   localThmb,
+  //   local,
+  //   date,
+  //   resultLocal,
+  //   resultAway,
+  //   away,
+  // } = props.match;
+>>>>>>> dce9b1f6197a840eb0a3614c67e6dc36b96da695
   // console.log(match);
   return (
     <div className="match_block">
