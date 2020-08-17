@@ -1,6 +1,17 @@
 import React from "react";
 
-const matchesBlock = ({awayThmb, final, localThmb, date, resultLocal, resultAway, away, local}) => {
+const matchesBlock = ({
+  match: {
+    awayThmb,
+    final,
+    localThmb,
+    date,
+    resultLocal,
+    resultAway,
+    away,
+    local,
+  },
+}) => {
   // const {
   //   awayThmb,
   //   final,
