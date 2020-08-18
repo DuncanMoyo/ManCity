@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./routes";
+import { Provider } from "react-redux";
+import store from "./store";
 import "./Assets/css/app.css";
 import { BrowserRouter } from "react-router-dom";
 import { firebase } from "./firebase";
 
 const App = (props) => {
   return (
-    <BrowserRouter>
-      <Routes {...props}/>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes {...props} />
+      </BrowserRouter>
+    </Provider>
   );
 };
 
