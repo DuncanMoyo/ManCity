@@ -1,7 +1,9 @@
-import { UPDATE_NAME, CLEAR_NAME } from "../types";
+import { UPDATE_NAME, CLEAR_NAME, ADD_SURNAME } from "../types";
 
 const defaultState = {
-  name: "",
+  name: "Zimkitha",
+  surname: "",
+  employement: "",
 };
 
 const form = (state = defaultState, action) => {
@@ -15,6 +17,11 @@ const form = (state = defaultState, action) => {
       return {
         ...state,
         name: "",
+      };
+    case ADD_SURNAME:
+      return {
+        ...state,
+        surname: action.surname,
       };
     default:
       return state;

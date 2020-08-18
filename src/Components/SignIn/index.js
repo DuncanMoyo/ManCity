@@ -1,121 +1,48 @@
-import React, { Component } from 'react'
-import FormFields from "../UI/FormFields";
-import { validate } from "../UI/Misc";
-import {firebase} from '../../firebase';
+import React from "react";
+import { connect } from "react-redux";
+import {
+  clearNameAction,
+  updateNameAction,
+  addSurnameAction,
+} from "../../store/actions";
 
+// <input type="text" name="name" value="" onChange={doAction()}>
 
-class SignIn extends Component {
+// Store -> object made up of reducers
+// Reducer is an object
+// Actions
+// Types
 
-  state = {
-    formError: false,
-    formSuccess: "",
-    formData: {
-      email: {
-        element: "input",
-        value: "",
-        config: {
-          name: "email_input",
-          type: "email",
-          placeholder: "Enter your email",
-        },
-        validation: {
-          required: true,
-          email: true,
-        },
-        valid: false,
-        validationMessage: "",
-      },
-      password: {
-        element: "input",
-        value: "",
-        config: {
-          name: "password_input",
-          type: "password",
-          placeholder: "Enter your password",
-        },
-        validation: {
-          required: true,
-        },
-        valid: false,
-        validationMessage: "",
-      },
-    },
-  };
+const SignIn = ({ name, updateName, clearName, addSurname }) => {
+  return (
+    <div className="container">
+      <h2>Your name is: {name}</h2>
+      <input
+        type="text"
+        value={name || ""}
+        onChange={(text) => updateName(name + text.nativeEvent.data)}
+      />
+      <button onClick={clearName}>Clear name</button>
+    </div>
+  );
+};
 
-  submitForm(event) {
-    event.preventDefault();
+const mapStateToProps = (state) => ({
+  name: state.forms.name,
+});
 
-    let dataToSubmit = {};
-    let formIsValid = true;
+const mapDispatchToProps = (dispatch) => ({
+  updateName: (name) => dispatch(updateNameAction(name)),
+  clearName: () => dispatch(clearNameAction()),
+  addSurname: (surname) => dispatch(addSurnameAction(surname)),
+});
 
-    for (let key in this.state.formData) {
-      dataToSubmit[key] = this.state.formData[key].value;
-      formIsValid = this.state.formData[key].valid && formIsValid;
-    }
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
-    if (formIsValid) {
-      //  console.log(dataToSubmit); 
-      firebase.auth().signInWithEmailAndPassword(
-        dataToSubmit.email, dataToSubmit.password
-      ). then(() => {
-        // console.log('user is auth');
-        this.props.history.push('/dashboard')
-      }).catch(error => {
-        this.setState({
-          formError: true
-        })
-      })
-
-    } else {
-      // console.log('ERROR');
-      this.setState({
-        formError: true,
-      });
-    }
-  }
-
-  updateForm(element) {
-    // console.log(element);
-    const newFormData = { ...this.state.formData };
-    const newElement = { ...newFormData[element.id] };
-    newElement.value = element.event.target.value;
-
-    let validData = validate(newElement);
-    // console.log(validData);
-    newElement.valid = validData[0];
-    newElement.validationMessage = validData[1];
-    newFormData[element.id] = newElement;
-    // console.log(newFormData);
-    this.setState({ formData: newFormData, formError: false });
-  }
-
-  render() {
-    return (
-      <div className='container'>
-        <div className='signin_wrapper' style={{margin: '100px'}}>
-          <form onSubmit={event => this.submitForm(event)}>
-            <h2>Please Login</h2>
-            <FormFields
-                id={"email"}
-                formData={this.state.formData.email}
-                change={element => this.updateForm(element)}
-              />
-
-            <FormFields
-                id={"password"}
-                formData={this.state.formData.password}
-                change={element => this.updateForm(element)}
-              />   
-               {this.state.formError ? (
-                <div className="error_label">Something is wrong. Try again</div>
-              ) : null} 
-              <button onClick={(event) => this.submitForm(event)}>Log in</button>
-
-          </form>
-        </div>
-      </div>
-    )
-  }
-}
-
-export default SignIn
+// create a type +
+// create an action +
+// create switch case +
+// import action/s +
+// declare in mapdispatchtoprops +
+// call in props +
+// use it
