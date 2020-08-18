@@ -12,17 +12,7 @@ const matchesBlock = ({
     local,
   },
 }) => {
-  // const {
-  //   awayThmb,
-  //   final,
-  //   localThmb,
-  //   local,
-  //   date,
-  //   resultLocal,
-  //   resultAway,
-  //   away,
-  // } = props.match;
-  // console.log(match);
+ 
   return (
     <div className="match_block">
       <div className="match_date">
