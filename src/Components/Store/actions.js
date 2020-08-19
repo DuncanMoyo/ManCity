@@ -1,0 +1,2 @@
+export const UPDATE_EMAIL = 'ADD_NAME'
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
