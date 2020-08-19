@@ -1,2 +1,2 @@
-export const UPDATE_EMAIL = 'ADD_NAME'
-export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
+export const ENTER_EMAIL = 'ENTER_EMAIL'
+export const ENTER_PASSWORD = 'ENTER_PASSWORD'

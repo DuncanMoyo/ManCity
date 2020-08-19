@@ -36,6 +36,21 @@ const initialState = {
   },
 }
 
-
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.ENTER_EMAIL:
+      return {
+        ...state,
+        email: action.email
+      }
+    case actionTypes.ENTER_PASSWORD:
+      return {
+        ...state,
+        password: action.password
+      }
+    default:
+      return state
+  }
+}
 
 export default reducer;
